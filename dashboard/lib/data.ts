@@ -41,6 +41,7 @@ export type Lead = {
 
 export const getLeads = cache((): Lead[] => {
   const file = path.join(process.cwd(), "data", "leads.json");
+  if (!fs.existsSync(file)) return [];
   const raw = fs.readFileSync(file, "utf-8");
   return JSON.parse(raw) as Lead[];
 });
